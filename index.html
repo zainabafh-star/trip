@@ -156,6 +156,19 @@
   .chip.alt{background:#FFF2D6;color:#9A6A05}
   .chip.hi{background:#E3F6EE;color:#1B7F5E}
 
+  /* ============ موجز الحجوزات ============ */
+  .legs{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
+  .legs th{background:#F1EAE0;text-align:right;font-weight:700;font-size:12.5px;color:#5C6B78;padding:9px 11px}
+  .legs td{padding:10px 11px;border-top:1px solid #EFE7DA;vertical-align:middle}
+  .legs td.d{font-family:"IBM Plex Mono",monospace;font-size:13px;white-space:nowrap;color:var(--sky)}
+  .legs td.n{font-family:"Baloo Bhaijaan 2",sans-serif;font-weight:700;font-size:16px;text-align:center}
+  .legs .badge{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;font-weight:500}
+  .badge.out{background:#FDE9E7;color:#C33B33}
+  .badge.mid{background:#FFF2D6;color:#9A6A05}
+  .badge.back{background:#E2F7EE;color:#17825F}
+  .legs-scroll{overflow-x:auto}
+  .legs-scroll table{min-width:520px}
+
   /* ============ الملاحظات ============ */
   .notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:12px;margin-top:34px}
   .note{background:var(--card);border-radius:20px;padding:16px 18px;box-shadow:0 6px 18px rgba(19,41,63,.06)}
@@ -230,7 +243,7 @@
   </section>
 
   <div class="stats">
-    <div class="stat"><b>١٢</b><i>يومًا</i></div>
+    <div class="stat"><b>١٠</b><i>أيام كاملة</i></div>
     <div class="stat"><b>٥</b><i>ليالٍ في لندن</i></div>
     <div class="stat"><b>٦</b><i>ليالٍ في إنترلاكن</i></div>
     <div class="stat"><b>٣٤٥٤م</b><i>أعلى نقطة</i></div>
@@ -308,7 +321,7 @@
     <div class="pgrid">
       <div class="pgroup">
         <h3>لندن</h3>
-        <span class="n">٨ — ١٣ أغسطس · ٧ أشخاص</span>
+        <span class="n">٨ — ١٣ أغسطس · ٨ أشخاص</span>
         <div class="names">
           <span class="name both">أمي</span>
           <span class="name both">حمد</span>
@@ -316,6 +329,7 @@
           <span class="name one">ثريا</span>
           <span class="name both">عيوش</span>
           <span class="name one">سلمى</span>
+          <span class="name one">ديم</span>
           <span class="name both">زينب</span>
         </div>
       </div>
@@ -336,7 +350,7 @@
     </div>
     <div class="legend">
       <span><i class="key" style="background:#5CC3A1"></i>في الرحلتين: أمي، حمد، عيوش، زينب</span>
-      <span><i class="key" style="background:#F0B95C"></i>لندن فقط: فهودي، ثريا، سلمى</span>
+      <span><i class="key" style="background:#F0B95C"></i>لندن فقط: فهودي، ثريا، سلمى، ديم</span>
       <span><i class="key" style="background:#F0B95C"></i>سويسرا فقط: صالح، ليلى، ديمة، نوني</span>
     </div>
   </section>
@@ -568,6 +582,8 @@
     </article>
 
       </section>
+
+
 
   <!-- ============ ملاحظات ============ -->
   <section class="notes">
