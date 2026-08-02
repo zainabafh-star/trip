@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رحلة أغسطس ٢٠٢٦ — لندن وإنترلاكن</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&family=Tajawal:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#13293F;
+    --snow:#FFF8EE;
+    --card:#FFFFFF;
+    --sky:#2E6FA8;
+    --sky-deep:#123A63;
+    --lake:#12A5A5;
+    --sun:#FFB020;
+    --rose:#F2635B;
+    --mint:#2FBF8F;
+    --grey:#6B8598;
+    --hair:#E7DCCB;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--snow);
+    color:var(--ink);
+    font-family:"Tajawal",system-ui,sans-serif;
+    font-weight:400;line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 16px 70px}
+
+  /* ============ الواجهة ============ */
+  .hero{position:relative;margin:0 -16px 0;overflow:hidden;background:linear-gradient(180deg,#0E2E5C 0%,#2E6FA8 55%,#7FC2D9 82%,#FFD9A0 100%)}
+  .hero-inner{position:relative;z-index:3;max-width:928px;margin:0 auto;padding:34px 18px 132px;color:#fff}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.2em;color:#BFE3F2;margin-bottom:10px}
+  h1{font-family:"Baloo Bhaijaan 2",sans-serif;font-weight:800;font-size:clamp(38px,10vw,72px);line-height:1.1;text-shadow:0 3px 18px rgba(6,26,50,.35)}
+  h1 em{font-style:normal;color:var(--sun)}
+  .route{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px;font-family:"Baloo Bhaijaan 2",sans-serif;font-size:clamp(14px,3.6vw,18px)}
+  .route .city{background:rgba(255,255,255,.18);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:4px 14px}
+  .route .arrow{color:var(--sun);font-size:19px}
+  .sun-disc{position:absolute;top:52px;left:36px;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle,#FFE9A8 0%,#FFC247 62%,rgba(255,194,71,0) 72%);z-index:1;animation:glow 6s ease-in-out infinite}
+  @keyframes glow{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+  .ridge{position:absolute;inset-inline:0;bottom:-1px;z-index:2;display:block;width:100%;height:auto}
+  .plane{animation:fly 9s ease-in-out infinite}
+  @keyframes fly{0%,100%{transform:translate(0,0)}50%{transform:translate(-10px,-6px)}}
+
+  /* ============ الأرقام ============ */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:-46px;position:relative;z-index:5}
+  .stat{background:var(--card);border-radius:20px;padding:16px 14px;box-shadow:0 10px 26px rgba(19,41,63,.10);border-bottom:4px solid var(--sky)}
+  .stat:nth-child(2){border-color:var(--rose)}
+  .stat:nth-child(3){border-color:var(--mint)}
+  .stat:nth-child(4){border-color:var(--sun)}
+  .stat b{display:block;font-family:"Baloo Bhaijaan 2",sans-serif;font-size:30px;font-weight:800;line-height:1.2}
+  .stat i{font-style:normal;font-size:12.5px;color:var(--grey)}
+
+  /* ============ منحنى الارتفاع ============ */
+  .panel{background:var(--card);border-radius:24px;padding:20px 14px 12px;margin-top:26px;box-shadow:0 8px 24px rgba(19,41,63,.07)}
+  .panel h2{font-family:"Baloo Bhaijaan 2",sans-serif;font-size:20px;font-weight:700}
+  .panel .sub{font-size:13px;color:var(--grey);margin-bottom:12px}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  svg.elev{display:block;width:100%;min-width:560px;height:auto}
+  .elev .grid{stroke:#EDE3D3;stroke-width:1}
+  .elev .glabel{fill:#A9B9C4;font-family:"IBM Plex Mono",monospace;font-size:9px}
+  .elev .line{fill:none;stroke:var(--sky);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+  .elev .dot{fill:#fff;stroke:var(--sky);stroke-width:2.5}
+  .elev .dot.peak{fill:var(--rose);stroke:#fff;stroke-width:2}
+  .elev .daynum{fill:#7C8C99;font-family:"IBM Plex Mono",monospace;font-size:10.5px;text-anchor:middle}
+  .elev .plabel{fill:var(--ink);font-family:"Tajawal",sans-serif;font-size:10px;font-weight:500;text-anchor:middle}
+  .elev .split{stroke:var(--sun);stroke-width:1.5;stroke-dasharray:4 4}
+
+  /* ============ المسافرون والوجهات ============ */
+  .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:6px}
+  .pgroup{background:#FAF5EC;border-radius:16px;padding:14px 16px}
+  .pgroup h3{font-family:"Baloo Bhaijaan 2",sans-serif;font-size:16px;font-weight:700;margin-bottom:2px}
+  .pgroup .n{font-size:12px;color:var(--grey)}
+  .names{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+  .name{font-size:14px;font-weight:500;padding:5px 13px;border-radius:999px}
+  .name.both{background:#DCF2E8;color:#0F6349;border:1px solid #9CD8C0}
+  .name.one{background:#FFEEDA;color:#8A5B00;border:1px solid #F2CE93}
+  .legend{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:14px;font-size:12.5px;color:var(--grey)}
+  .key{width:11px;height:11px;border-radius:50%;display:inline-block;margin-inline-end:6px;vertical-align:-1px}
+  .dest{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:9px;margin-top:12px}
+  .ditem{display:flex;gap:10px;align-items:flex-start;background:#FAF5EC;border-radius:13px;padding:10px 13px;font-size:14.5px}
+  .ditem b{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--sky);padding-top:3px}
+  .ditem small{display:block;font-size:12.5px;color:var(--grey);margin-top:3px;line-height:1.9}
+
+  /* ============ المراحل ============ */
+  .leg{margin-top:36px}
+  .leg-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .leg-head h2{font-family:"Baloo Bhaijaan 2",sans-serif;font-size:clamp(26px,6vw,36px);font-weight:800}
+  .pill{font-size:12.5px;padding:5px 13px;border-radius:999px;font-weight:500}
+  .pill.uk{background:#FDE9E7;color:#C33B33}
+  .pill.ch{background:#E2F7EE;color:#17825F}
+  .pill.range{background:#EAF2F9;color:var(--sky);font-family:"IBM Plex Mono",monospace;font-size:12px}
+
+  .day{
+    background:var(--card);border-radius:22px;margin-bottom:14px;overflow:hidden;
+    box-shadow:0 6px 18px rgba(19,41,63,.06);
+    border-inline-start:6px solid var(--sky);
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .gallery{display:grid;gap:3px;background:linear-gradient(135deg,#2E6FA8,#7FC2D9 60%,#FFD9A0)}
+  .gallery img{width:100%;height:100%;object-fit:cover;display:block;min-height:0;background:#DCE8F0}
+  .gallery.g1{grid-template-columns:1fr;height:200px}
+  .gallery.g2{grid-template-columns:1fr 1fr;height:195px}
+  .gallery.g3{grid-template-columns:1.9fr 1fr;grid-template-rows:1fr 1fr;height:215px}
+  .gallery.g3 img:first-child{grid-row:1 / span 2}
+  .capbar{
+    display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+    padding:8px 16px 0;font-size:11.5px;color:var(--grey)
+  }
+  .capbar span{background:#F1EAE0;border-radius:8px;padding:2px 9px}
+  .row{display:grid;grid-template-columns:70px 1fr;gap:14px;padding:16px}
+  .day:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(19,41,63,.13)}
+  .day.move{border-inline-start-color:var(--rose)}
+  .day.move .row{background:linear-gradient(180deg,#FFF4F2,#fff 55%)}
+  .day.summit{border-inline-start-color:var(--mint)}
+  .day.chill{border-inline-start-color:var(--lake)}
+
+  .datebox{text-align:center}
+  .datebox .d{display:block;font-family:"Baloo Bhaijaan 2",sans-serif;font-size:32px;font-weight:800;line-height:1.1}
+  .datebox .wd{display:block;font-size:12px;color:var(--grey)}
+  .datebox .hj{display:block;font-size:10.5px;color:#A9B9C4;font-family:"IBM Plex Mono",monospace;margin-top:2px}
+
+  .body h3{font-family:"Baloo Bhaijaan 2",sans-serif;font-size:18.5px;font-weight:700;margin-bottom:2px}
+  .body p{font-size:14.5px;color:#3E5A72;font-weight:300}
+
+  .wx{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:9px 0 4px}
+  .wx-main{display:inline-flex;align-items:center;gap:7px;background:#EAF4FB;border-radius:12px;padding:4px 11px}
+  .wx-main .t{font-family:"Baloo Bhaijaan 2",sans-serif;font-weight:700;font-size:16px;color:var(--sky-deep)}
+  .wx-main .lo{font-size:12px;color:var(--grey)}
+  .wx-peak{display:inline-flex;align-items:center;gap:6px;background:#E9F1F6;border:1px dashed #B9CFDD;border-radius:12px;padding:4px 11px;font-size:12.5px;color:#31586F}
+  .wx-peak b{font-family:"Baloo Bhaijaan 2",sans-serif;font-size:14px}
+  .wx-peak.cold{background:#EAF6FF;border-color:#A9D4F0;color:#15628F}
+  .ico{width:20px;height:20px;flex:0 0 20px}
+
+  .event{
+    display:flex;align-items:center;gap:8px;margin-top:10px;
+    background:#FFF3D8;border-inline-start:4px solid var(--sun);
+    border-radius:12px;padding:7px 12px;
+    font-size:14px;font-weight:500;color:#8A5B00;
+  }
+  .event.people{background:#E8F6F0;border-inline-start-color:var(--mint);color:#136B4E}
+  .spots{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+  .spot{
+    display:inline-flex;align-items:center;gap:6px;
+    background:#EAF4FB;border:1px solid #C6DFF0;border-radius:10px;
+    padding:4px 11px;font-size:13px;color:#1D4E73;font-weight:500;
+  }
+  .spot i{font-style:normal;font-size:11px;color:#7FA6C0}
+  .area{font-size:12.5px;color:var(--sky);font-weight:500;margin-top:2px}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .chip{font-size:11.5px;padding:3px 10px;border-radius:9px;background:#F4EFE6;color:#6B7C8A}
+  .chip.alt{background:#FFF2D6;color:#9A6A05}
+  .chip.hi{background:#E3F6EE;color:#1B7F5E}
+
+  /* ============ الملاحظات ============ */
+  .notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:12px;margin-top:34px}
+  .note{background:var(--card);border-radius:20px;padding:16px 18px;box-shadow:0 6px 18px rgba(19,41,63,.06)}
+  .note h4{font-family:"Baloo Bhaijaan 2",sans-serif;font-size:16px;font-weight:700;margin-bottom:7px}
+  .note ul{list-style:none;font-size:13.5px;color:#3E5A72;font-weight:300}
+  .note li{position:relative;padding-inline-start:15px;margin-bottom:5px}
+  .note li::before{content:"";position:absolute;inset-inline-start:0;top:11px;width:6px;height:6px;border-radius:50%;background:var(--sun)}
+  footer{margin-top:26px;text-align:center;font-size:12px;color:#9AA9B4;font-family:"IBM Plex Mono",monospace}
+
+  @media (max-width:520px){
+    .row{grid-template-columns:58px 1fr;gap:11px;padding:14px}
+    .gallery.g1{height:165px}
+    .gallery.g2{height:150px}
+    .gallery.g3{height:175px}
+    .datebox .d{font-size:27px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .sun-disc,.plane{animation:none}
+    .day:hover{transform:none}
+  }
+  @media print{
+    body{background:#fff}
+    .hero{background:#123A63}
+    .day,.note,.panel,.stat{box-shadow:none;border:1px solid #ddd}
+  }
+</style>
+</head>
+<body>
+
+<!-- أيقونات الطقس -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="#F5A21A" stroke-width="2" stroke-linecap="round">
+    <circle cx="12" cy="12" r="4.2" fill="#FFD166" stroke="#F5A21A"/>
+    <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M19.1 4.9l-1.5 1.5M6.4 17.6l-1.5 1.5"/>
+  </symbol>
+  <symbol id="i-part" viewBox="0 0 24 24" fill="none" stroke="#F5A21A" stroke-width="2" stroke-linecap="round">
+    <circle cx="9" cy="9" r="3.4" fill="#FFD166" stroke="#F5A21A"/>
+    <path d="M9 2.2v1.6M2.2 9h1.6M4.4 4.4l1.1 1.1M13.6 4.4l-1.1 1.1"/>
+    <path d="M8 18h9.2a3.3 3.3 0 0 0 .3-6.6A4.6 4.6 0 0 0 8.6 12 3 3 0 0 0 8 18z" fill="#DDEAF3" stroke="#9BB6C9"/>
+  </symbol>
+  <symbol id="i-rain" viewBox="0 0 24 24" fill="none" stroke="#7FA6C0" stroke-width="2" stroke-linecap="round">
+    <path d="M7 15h9.2a3.3 3.3 0 0 0 .3-6.6A4.8 4.8 0 0 0 7.6 9 3 3 0 0 0 7 15z" fill="#DDEAF3" stroke="#8FAFC7"/>
+    <path d="M9 18.5l-.8 2M13 18.5l-.8 2M17 18.5l-.8 2" stroke="#4FA3D9"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+
+  <!-- ============ الواجهة ============ -->
+  <section class="hero">
+    <div class="sun-disc"></div>
+    <div class="hero-inner">
+      <div class="eyebrow">AUG 2026 · صفر — ربيع الأول ١٤٤٨</div>
+      <h1>لندن <em>ثم</em> إنترلاكن</h1>
+      <div class="route">
+        <span class="city">الرياض</span><span class="arrow">←</span>
+        <span class="city">لندن</span><span class="arrow">←</span>
+        <span class="city">إنترلاكن</span><span class="arrow">←</span>
+        <span class="city">الرياض</span>
+      </div>
+    </div>
+    <svg class="ridge" viewBox="0 0 960 190" preserveAspectRatio="none" aria-hidden="true">
+      <g class="plane" transform="translate(690,44)">
+        <path d="M0 0l26 10-8 3-4 8-4-9-12-4 2-8z" fill="#FFF8EE" opacity=".95"/>
+      </g>
+      <path d="M0 96 L110 40 L170 78 L250 26 L340 96 L430 52 L520 104 L610 44 L700 92 L790 58 L880 100 L960 66 L960 190 L0 190 Z" fill="#5E8FBC" opacity=".55"/>
+      <path d="M250 26 L214 54 L286 54 Z M610 44 L580 68 L640 68 Z" fill="#FFF8EE" opacity=".8"/>
+      <path d="M0 128 L90 84 L180 124 L270 74 L360 130 L450 92 L540 134 L640 88 L740 130 L840 96 L960 132 L960 190 L0 190 Z" fill="#2F5F8F"/>
+      <path d="M270 74 L242 98 L300 98 Z M640 88 L616 108 L666 108 Z" fill="#FFF8EE" opacity=".9"/>
+      <path d="M0 158 L120 126 L240 158 L380 122 L520 160 L660 124 L800 158 L960 128 L960 190 L0 190 Z" fill="#FFF8EE"/>
+    </svg>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><b>١٢</b><i>يومًا</i></div>
+    <div class="stat"><b>٥</b><i>ليالٍ في لندن</i></div>
+    <div class="stat"><b>٦</b><i>ليالٍ في إنترلاكن</i></div>
+    <div class="stat"><b>٣٤٥٤م</b><i>أعلى نقطة</i></div>
+  </div>
+
+  <!-- ============ منحنى الارتفاع ============ -->
+  <section class="panel">
+    <h2>منحنى الرحلة</h2>
+    <div class="sub">أعلى نقطة تصلينها كل يوم — من ضفة التايمز إلى قمم جبال برن.</div>
+    <div class="scroll">
+      <svg class="elev" viewBox="0 0 720 215" role="img" aria-label="مخطط ارتفاع أيام الرحلة">
+        <defs>
+          <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#7FC2D9" stop-opacity=".55"/>
+            <stop offset="100%" stop-color="#7FC2D9" stop-opacity=".04"/>
+          </linearGradient>
+        </defs>
+        <line class="grid" x1="14" y1="34"  x2="694" y2="34"/>
+        <line class="grid" x1="14" y1="84"  x2="694" y2="84"/>
+        <line class="grid" x1="14" y1="134" x2="694" y2="134"/>
+        <line class="grid" x1="14" y1="169" x2="694" y2="169"/>
+        <text class="glabel" x="696" y="37">3500</text>
+        <text class="glabel" x="696" y="87">2200</text>
+        <text class="glabel" x="696" y="137">900</text>
+        <text class="glabel" x="696" y="172">0 م</text>
+
+        <line class="split" x1="415" y1="22" x2="415" y2="172"/>
+        <text class="plabel" x="415" y="17" fill="#C88A0B">انتقال ١٣ أغسطس</text>
+
+        <path fill="url(#fill)" d="M670,168 L615,163 L560,168 L505,168 L450,166 L395,147 L340,118 L285,36 L230,72 L175,48 L120,147 L65,152 L65,172 L670,172 Z"/>
+        <polyline class="line" points="670,168 615,163 560,168 505,168 450,166 395,147 340,118 285,36 230,72 175,48 120,147 65,152"/>
+
+        <circle class="dot" cx="670" cy="168" r="4.5"/>
+        <circle class="dot" cx="615" cy="163" r="4.5"/>
+        <circle class="dot" cx="560" cy="168" r="4.5"/>
+        <circle class="dot" cx="505" cy="168" r="4.5"/>
+        <circle class="dot" cx="450" cy="166" r="4.5"/>
+        <circle class="dot" cx="395" cy="147" r="4.5"/>
+        <circle class="dot peak" cx="340" cy="118" r="5"/>
+        <circle class="dot peak" cx="285" cy="36" r="6"/>
+        <circle class="dot peak" cx="230" cy="72" r="5"/>
+        <circle class="dot peak" cx="175" cy="48" r="5.5"/>
+        <circle class="dot" cx="120" cy="147" r="4.5"/>
+        <circle class="dot" cx="65" cy="152" r="4.5"/>
+
+        <text class="plabel" x="285" y="27">يونغفراويوخ ٣٤٥٤م</text>
+        <text class="plabel" x="175" y="39">شيلتهورن ٢٩٧٠م</text>
+        <text class="plabel" x="230" y="63">فيرست ٢١٦٨م</text>
+        <text class="plabel" x="340" y="110">هاردر كولم ١٣٢٢م</text>
+
+        <text class="daynum" x="670" y="190">٨</text>
+        <text class="daynum" x="615" y="190">٩</text>
+        <text class="daynum" x="560" y="190">١٠</text>
+        <text class="daynum" x="505" y="190">١١</text>
+        <text class="daynum" x="450" y="190">١٢</text>
+        <text class="daynum" x="395" y="190">١٣</text>
+        <text class="daynum" x="340" y="190">١٤</text>
+        <text class="daynum" x="285" y="190">١٥</text>
+        <text class="daynum" x="230" y="190">١٦</text>
+        <text class="daynum" x="175" y="190">١٧</text>
+        <text class="daynum" x="120" y="190">١٨</text>
+        <text class="daynum" x="65" y="190">١٩</text>
+
+        <text class="plabel" x="560" y="208" fill="#7C8C99">لندن</text>
+        <text class="plabel" x="230" y="208" fill="#7C8C99">إنترلاكن</text>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ============ المسافرون ============ -->
+  <section class="panel">
+    <h2>المسافرون</h2>
+    <div class="sub">الأخضر = في الرحلتين · البرتقالي = في وجهة واحدة فقط</div>
+    <div class="pgrid">
+      <div class="pgroup">
+        <h3>لندن</h3>
+        <span class="n">٨ — ١٣ أغسطس · ٧ أشخاص</span>
+        <div class="names">
+          <span class="name both">أمي</span>
+          <span class="name both">حمد</span>
+          <span class="name one">فهودي</span>
+          <span class="name one">ثريا</span>
+          <span class="name both">عيوش</span>
+          <span class="name one">سلمى</span>
+          <span class="name both">زينب</span>
+        </div>
+      </div>
+      <div class="pgroup">
+        <h3>سويسرا</h3>
+        <span class="n">١٣ — ١٩ أغسطس · ٨ أشخاص</span>
+        <div class="names">
+          <span class="name both">أمي</span>
+          <span class="name both">حمد</span>
+          <span class="name one">صالح</span>
+          <span class="name one">ليلى</span>
+          <span class="name one">ديمة</span>
+          <span class="name one">نوني</span>
+          <span class="name both">عيوش</span>
+          <span class="name both">زينب</span>
+        </div>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i class="key" style="background:#5CC3A1"></i>في الرحلتين: أمي، حمد، عيوش، زينب</span>
+      <span><i class="key" style="background:#F0B95C"></i>لندن فقط: فهودي، ثريا، سلمى</span>
+      <span><i class="key" style="background:#F0B95C"></i>سويسرا فقط: صالح، ليلى، ديمة، نوني</span>
+    </div>
+  </section>
+
+  <!-- ============ لندن ============ -->
+  <section class="leg">
+    <div class="leg-head">
+      <h2>لندن</h2>
+      <span class="pill range">8 — 13 AUG</span>
+      <span class="pill uk">٥ ليالٍ</span>
+    </div>
+
+
+    <article class="day move">
+      <div class="gallery g2"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Tower_Bridge_from_Shad_Thames.jpg?width=900" alt="تاور بريدج" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/London_Skyline_from_Waterloo_Bridge%2C_London%2C_UK_-_Diliff.jpg?width=900" alt="أفق لندن من جسر واترلو" loading="lazy" onerror="this.remove()"></div>
+      <div class="capbar"><span>تاور بريدج</span><span>أفق لندن من جسر واترلو</span></div>
+      <div class="row">
+        <div class="datebox"><span class="d">٨</span><span class="wd">السبت</span><span class="hj">٢٥ صفر</span></div>
+      <div class="body">
+        <h3>الرياض ← لندن</h3>
+        <p>طيران مباشر ٦–٧ ساعات. تسجيل الدخول في الفندق، ثم عشاء قريب ومشي خفيف لتعديل فارق التوقيت.</p>
+        <div class="wx">
+          <span class="wx-main"><svg class="ico"><use href="#i-part"/></svg><span class="t">٢٤°</span><span class="lo">/ ١٥° ليلًا</span></span>
+        </div>
+        <div class="meta"><span class="chip alt">يوم انتقال</span><span class="chip">فارق التوقيت −٢ ساعة</span></div>
+      </div>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="gallery g3"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Palace_of_Westminster%2C_London_-_Feb_2007.jpg?width=900" alt="قصر وستمنستر" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Clock_Tower_-_Palace_of_Westminster%2C_London_-_September_2006-2.jpg?width=900" alt="بيغ بن" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Westminster_Bridge%2C_River_Thames%2C_London%2C_England.jpg?width=900" alt="ضفة التايمز" loading="lazy" onerror="this.remove()"></div>
+      <div class="capbar"><span>قصر وستمنستر</span><span>بيغ بن</span><span>ضفة التايمز</span></div>
+      <div class="row">
+        <div class="datebox"><span class="d">٩</span><span class="wd">الأحد</span><span class="hj">٢٦ صفر</span></div>
+      <div class="body">
+        <h3>وستمنستر وضفة التايمز</h3>
+        <div class="area">المنطقة: وستمنستر · ساوث بانك</div>
+        <p>بيغ بن وقصر وستمنستر صباحًا، ثم مشي على الضفة حتى جسر لندن ومنطقة ساوث بانك.</p>
+        <div class="spots"><span class="spot">بيغ بن <i>Big Ben</i></span><span class="spot">جسر لندن <i>Tower Bridge</i></span><span class="spot">عين لندن <i>London Eye</i></span></div>
+        <div class="event">🎓 تخرّج فهودي</div>
+        <div class="wx">
+          <span class="wx-main"><svg class="ico"><use href="#i-part"/></svg><span class="t">٢٣°</span><span class="lo">/ ١٥° ليلًا</span></span>
+        </div>
+        <div class="meta"><span class="chip">مشي طويل</span><span class="chip hi">١٣٥م — عين لندن</span></div>
+      </div>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="gallery g3"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/British_Museum_Great_Court%2C_London%2C_UK_-_Diliff.jpg?width=900" alt="الباحة الكبرى — المتحف البريطاني" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Queen_Elizabeth_II_Great_Court_-_The_British_Museum.jpg?width=900" alt="داخل المتحف" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/British_Museum_Great_Court_roof.jpg?width=900" alt="سقف الباحة الزجاجي" loading="lazy" onerror="this.remove()"></div>
+      <div class="capbar"><span>الباحة الكبرى — المتحف البريطاني</span><span>داخل المتحف</span><span>سقف الباحة الزجاجي</span></div>
+      <div class="row">
+        <div class="datebox"><span class="d">١٠</span><span class="wd">الاثنين</span><span class="hj">٢٧ صفر</span></div>
+      <div class="body">
+        <h3>المتحف وكوفنت غاردن</h3>
+        <div class="area">المنطقة: بلومزبري · كوفنت غاردن</div>
+        <p>المتحف البريطاني صباحًا (الدخول مجاني)، ثم كوفنت غاردن وأسواقه وعروض الشارع بعد الظهر.</p>
+        <div class="spots"><span class="spot">المتحف البريطاني <i>British Museum</i></span><span class="spot">كوفنت غاردن <i>Covent Garden</i></span></div>
+        <div class="wx">
+          <span class="wx-main"><svg class="ico"><use href="#i-rain"/></svg><span class="t">٢٢°</span><span class="lo">/ ١٤° ليلًا</span></span>
+        </div>
+        <div class="meta"><span class="chip">أنشطة داخلية — مناسب للمطر</span><span class="chip alt">خذي مظلة</span></div>
+      </div>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="gallery g3"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/The_Shard_at_sunset_2017-10-27.jpg?width=900" alt="برج ذا شارد وقت الغروب" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Admiralty_Arch_at_Dusk%2C_London%2C_UK_-_Diliff.jpg?width=900" alt="قوس الأدميرالية" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Big_Ben_and_Westminster_Bridge_at_night.jpg?width=900" alt="لندن ليلًا" loading="lazy" onerror="this.remove()"></div>
+      <div class="capbar"><span>برج ذا شارد وقت الغروب</span><span>قوس الأدميرالية</span><span>لندن ليلًا</span></div>
+      <div class="row">
+        <div class="datebox"><span class="d">١١</span><span class="wd">الثلاثاء</span><span class="hj">٢٨ صفر</span></div>
+      <div class="body">
+        <h3>يوم التسوق — ويست إند</h3>
+        <div class="area">المنطقة: أكسفورد ستريت · مايفير · سوهو</div>
+        <p>ابدئي من سيلفريدجز في أكسفورد ستريت، ثم بوند ستريت للماركات، فريجنت ستريت، وبريمارك للأسعار المنخفضة. مساءً عرض في الويست إند.</p>
+        <div class="spots"><span class="spot">أكسفورد ستريت <i>Oxford St</i></span><span class="spot">سيلفريدجز <i>Selfridges</i></span><span class="spot">بوند ستريت <i>Bond St</i></span><span class="spot">ريجنت ستريت <i>Regent St</i></span><span class="spot">بريمارك <i>Primark</i></span></div>
+        <div class="wx">
+          <span class="wx-main"><svg class="ico"><use href="#i-sun"/></svg><span class="t">٢٥°</span><span class="lo">/ ١٦° ليلًا</span></span>
+        </div>
+        <div class="meta"><span class="chip alt">احجزي المسرح مسبقًا</span></div>
+      </div>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="gallery g3"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Broad_Walk_in_Hyde_Park_at_sunset.jpg?width=900" alt="هايد بارك" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/The_Serpentine%2C_Hyde_Park.jpg?width=900" alt="بحيرة السربنتين" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Serpentine_Bridge_Hyde_Park_London_2020.jpg?width=900" alt="جسر السربنتين" loading="lazy" onerror="this.remove()"></div>
+      <div class="capbar"><span>هايد بارك</span><span>بحيرة السربنتين</span><span>جسر السربنتين</span></div>
+      <div class="row">
+        <div class="datebox"><span class="d">١٢</span><span class="wd">الأربعاء</span><span class="hj">٢٩ صفر</span></div>
+      <div class="body">
+        <h3>نايتسبريدج والحدائق</h3>
+        <div class="area">المنطقة: نايتسبريدج · مايفير · ماريليبون</div>
+        <p>هارودز صباحًا، ثم هايد بارك المجاور له للمشي والقوارب. بعد الظهر مقهى Fait Maison وريجنت بارك. رتّبي الحقائب مساءً.</p>
+        <div class="spots"><span class="spot">هارودز <i>Harrods</i></span><span class="spot">هايد بارك <i>Hyde Park</i></span><span class="spot">مقهى فيه ميزون <i>Fait Maison</i></span><span class="spot">ريجنت بارك <i>Regent’s Park</i></span></div>
+        <div class="event">🏁 نهاية برنامج فهودي</div>
+        <div class="wx">
+          <span class="wx-main"><svg class="ico"><use href="#i-part"/></svg><span class="t">٢٣°</span><span class="lo">/ ١٥° ليلًا</span></span>
+        </div>
+        <div class="meta"><span class="chip alt">بديل: وندسور أو كيو بالقطار</span><span class="chip">يوم مشي وحدائق</span></div>
+      </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ إنترلاكن ============ -->
+  <section class="leg">
+    <div class="leg-head">
+      <h2>إنترلاكن</h2>
+      <span class="pill range">13 — 19 AUG</span>
+      <span class="pill ch">٦ ليالٍ</span>
+    </div>
+
+    <article class="day move">
+      <div class="gallery g2"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/H%C3%B6heweg%2C_Interlaken.jpg?width=900" alt="شارع هوهيفيغ، إنترلاكن" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/MS_Schilthorn_in_Interlaken_West.jpg?width=900" alt="مرسى إنترلاكن الغربي" loading="lazy" onerror="this.remove()"></div>
+      <div class="capbar"><span>شارع هوهيفيغ، إنترلاكن</span><span>مرسى إنترلاكن الغربي</span></div>
+      <div class="row">
+        <div class="datebox"><span class="d">١٣</span><span class="wd">الخميس</span><span class="hj">٣٠ صفر</span></div>
+      <div class="body">
+        <h3>لندن ← إنترلاكن</h3>
+        <p>طيران إلى زيورخ (١س ٥٠د)، ثم قطار مباشر من المطار إلى إنترلاكن أوست (٢س ١٠د). المسار نفسه جميل — اجلسي على اليمين.</p>
+        <div class="event people">✨ ليلى وصلوح ينضمّون للرحلة في إنترلاكن</div>
+        <div class="wx">
+          <span class="wx-main"><svg class="ico"><use href="#i-part"/></svg><span class="t">٢٣°</span><span class="lo">لندن</span></span>
+          <span class="wx-peak"><b>٢٤°</b> إنترلاكن مساءً</span>
+        </div>
+        <div class="meta"><span class="chip alt">يوم انتقال</span></div>
+      </div>
+      </div>
+    </article>
+
+    <article class="day summit">
+      <div class="gallery g2"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Harder_Kulm_Interlaken.jpg?width=900" alt="منصة هاردر كولم" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/H%C3%B6heweg%2C_Interlaken.jpg?width=900" alt="وسط إنترلاكن" loading="lazy" onerror="this.remove()"></div>
+      <div class="capbar"><span>منصة هاردر كولم</span><span>وسط إنترلاكن</span></div>
+      <div class="row">
+        <div class="datebox"><span class="d">١٤</span><span class="wd">الجمعة</span><span class="hj">١ ربيع الأول</span></div>
+      <div class="body">
+        <h3>هاردر كولم وبحيرة برينز</h3>
+        <p>قطار مائل إلى قمة هاردر كولم لإطلالة البحيرتين، وبعد الظهر بحيرة برينز أو قرية إيزلتفالد.</p>
+        <div class="wx">
+          <span class="wx-main"><svg class="ico"><use href="#i-sun"/></svg><span class="t">٢٥°</span><span class="lo">/ ١٤° ليلًا</span></span>
+          <span class="wx-peak">في القمة <b>١٨°</b></span>
+        </div>
+        <div class="meta"><span class="chip hi">١٣٢٢م</span><span class="chip">نصف يوم</span></div>
+      </div>
+      </div>
+    </article>
+
+    <article class="day summit">
+      <div class="gallery g3"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jungfraujoch_building.jpg?width=900" alt="محطة يونغفراويوخ" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Aletsch_Glacier_from_Jungfraujoch_%282%29.jpg?width=900" alt="نهر أليتش الجليدي" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sphinx_Observatory_Jungfraujoch_04.jpg?width=900" alt="مرصد سفينكس" loading="lazy" onerror="this.remove()"></div>
+      <div class="capbar"><span>محطة يونغفراويوخ</span><span>نهر أليتش الجليدي</span><span>مرصد سفينكس</span></div>
+      <div class="row">
+        <div class="datebox"><span class="d">١٥</span><span class="wd">السبت</span><span class="hj">٢ ربيع الأول</span></div>
+      <div class="body">
+        <h3>يونغفراويوخ — سطح أوروبا</h3>
+        <p>يوم كامل بالقطار عبر كلاينه شايدك إلى أعلى محطة قطار في أوروبا: قصر الجليد والهضبة الثلجية. ابدئي مبكرًا جدًا.</p>
+        <div class="wx">
+          <span class="wx-main"><svg class="ico"><use href="#i-sun"/></svg><span class="t">٢٤°</span><span class="lo">/ ١٣° ليلًا</span></span>
+          <span class="wx-peak cold">في القمة <b>٢°</b> — ثلج</span>
+        </div>
+        <div class="meta"><span class="chip hi">٣٤٥٤م</span><span class="chip alt">احجزي التذكرة مسبقًا</span><span class="chip">معطف وقفازات</span></div>
+      </div>
+      </div>
+    </article>
+
+    <article class="day summit">
+      <div class="gallery g3"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bachalpsee_in_Grindelwald.jpg?width=900" alt="بحيرة باخالب" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/First_Cliff_Walk_Br%C3%BCcke.jpg?width=900" alt="ممشى الجرف المعلق" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/5431_-_Grindelwald_-_Clouds_over_Grindelwald%2C_viewed_from_First.JPG?width=900" alt="إطلالة من فيرست" loading="lazy" onerror="this.remove()"></div>
+      <div class="capbar"><span>بحيرة باخالب</span><span>ممشى الجرف المعلق</span><span>إطلالة من فيرست</span></div>
+      <div class="row">
+        <div class="datebox"><span class="d">١٦</span><span class="wd">الأحد</span><span class="hj">٣ ربيع الأول</span></div>
+      <div class="body">
+        <h3>غريندلفالد وقمة فيرست</h3>
+        <p>تلفريك إلى فيرست: ممشى الجرف المعلق، والزلاجات الجبلية، وبحيرة باخالب لمن تحب المشي.</p>
+        <div class="wx">
+          <span class="wx-main"><svg class="ico"><use href="#i-part"/></svg><span class="t">٢٦°</span><span class="lo">/ ١٥° ليلًا</span></span>
+          <span class="wx-peak">في القمة <b>١٣°</b></span>
+        </div>
+        <div class="meta"><span class="chip hi">٢١٦٨م</span><span class="chip">أنشطة ومغامرة</span></div>
+      </div>
+      </div>
+    </article>
+
+    <article class="day summit">
+      <div class="gallery g2"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lauterbrunnen_-_Staubbachfall.jpg?width=900" alt="شلال شتاوباخ" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Schilthorn_-_Piz_Gloria.jpg?width=900" alt="قمة شيلتهورن — بيز غلوريا" loading="lazy" onerror="this.remove()"></div>
+      <div class="capbar"><span>شلال شتاوباخ</span><span>قمة شيلتهورن — بيز غلوريا</span></div>
+      <div class="row">
+        <div class="datebox"><span class="d">١٧</span><span class="wd">الاثنين</span><span class="hj">٤ ربيع الأول</span></div>
+      <div class="body">
+        <h3>لاوتربرونن وشيلتهورن</h3>
+        <p>وادي الشلالات السبعين وشلال شتاوباخ، ثم صعود إلى مورن وشيلتهورن ومطعم بيز غلوريا الدوّار.</p>
+        <div class="wx">
+          <span class="wx-main"><svg class="ico"><use href="#i-sun"/></svg><span class="t">٢٣°</span><span class="lo">/ ١٣° ليلًا</span></span>
+          <span class="wx-peak cold">في القمة <b>٧°</b></span>
+        </div>
+        <div class="meta"><span class="chip hi">٢٩٧٠م</span><span class="chip">يوم كامل</span></div>
+      </div>
+      </div>
+    </article>
+
+    <article class="day chill">
+      <div class="gallery g2"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Switzerland_-_Oberhofen_castle_%2834308831365%29.jpg?width=900" alt="قلعة أوبرهوفن" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/MS_Schilthorn_in_Interlaken_West.jpg?width=900" alt="قوارب بحيرة ثون" loading="lazy" onerror="this.remove()"></div>
+      <div class="capbar"><span>قلعة أوبرهوفن</span><span>قوارب بحيرة ثون</span></div>
+      <div class="row">
+        <div class="datebox"><span class="d">١٨</span><span class="wd">الثلاثاء</span><span class="hj">٥ ربيع الأول</span></div>
+      <div class="body">
+        <h3>بحيرة ثون بالقارب</h3>
+        <p>رحلة بحرية هادئة إلى قلعة أوبرهوفن ومدينة ثون القديمة. يوم راحة بعد ثلاثة أيام جبال.</p>
+        <div class="wx">
+          <span class="wx-main"><svg class="ico"><use href="#i-part"/></svg><span class="t">٢٤°</span><span class="lo">/ ١٤° ليلًا</span></span>
+        </div>
+        <div class="meta"><span class="chip">إيقاع هادئ</span><span class="chip">القارب ضمن تذكرة سويس</span><span class="chip alt">بديل: لوسيرن بالقطار ٢س</span></div>
+      </div>
+      </div>
+    </article>
+
+    <article class="day move">
+      <div class="gallery g3"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/View_from_the_summit_of_Schilthorn.jpg?width=900" alt="وداعًا جبال برن" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/H%C3%B6heweg%2C_Interlaken.jpg?width=900" alt="إنترلاكن قبل المغادرة" loading="lazy" onerror="this.remove()"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Saudi_Arabia.svg?width=900" alt="علم المملكة العربية السعودية" loading="lazy" onerror="this.remove()"></div>
+      <div class="capbar"><span>وداعًا جبال برن</span><span>إنترلاكن قبل المغادرة</span><span>العودة إلى السعودية</span></div>
+      <div class="row">
+        <div class="datebox"><span class="d">١٩</span><span class="wd">الأربعاء</span><span class="hj">٦ ربيع الأول</span></div>
+      <div class="body">
+        <h3>إنترلاكن ← السعودية</h3>
+        <p>قطار مبكر إلى مطار زيورخ (٢س ١٠د)، والوصول قبل الإقلاع بثلاث ساعات. استرداد الضريبة عند المغادرة.</p>
+        <div class="wx">
+          <span class="wx-main"><svg class="ico"><use href="#i-sun"/></svg><span class="t">٢٥°</span><span class="lo">/ ١٥° ليلًا</span></span>
+        </div>
+        <div class="meta"><span class="chip alt">يوم مغادرة</span><span class="chip">اخرجي قبل ٤ ساعات من الرحلة</span></div>
+      </div>
+      </div>
+    </article>
+
+      </section>
+
+  <!-- ============ ملاحظات ============ -->
+  <section class="notes">
+    <div class="note">
+      <h4>قبل السفر</h4>
+      <ul>
+        <li>تأشيرتان منفصلتان: بريطانيا وشنغن لسويسرا</li>
+        <li>تأمين سفر يغطي الأنشطة الجبلية</li>
+        <li>تصريح ETA البريطاني إن كان مطلوبًا لجوازك</li>
+      </ul>
+    </div>
+    <div class="note">
+      <h4>التنقل</h4>
+      <ul>
+        <li>لندن: بطاقة بنكية لاتلامسية على البوابات مباشرة</li>
+        <li>سويسرا: Swiss Travel Pass أو Jungfrau Travel Pass</li>
+        <li>يونغفراويوخ وشيلتهورن تذاكرهما منفصلة جزئيًا</li>
+      </ul>
+    </div>
+    <div class="note">
+      <h4>الملابس</h4>
+      <ul>
+        <li>طبقات خفيفة نهارًا وجاكيت للمساء</li>
+        <li>معطف شتوي وقفازات ليوم ١٥</li>
+        <li>حذاء مشي مريح — الأيام كلها مشي</li>
+      </ul>
+    </div>
+    <div class="note">
+      <h4>احجزي مبكرًا</h4>
+      <ul>
+        <li>تذكرة يونغفراويوخ ليوم ١٥</li>
+        <li>مسرح الويست إند ليوم ١١</li>
+        <li>قطار زيورخ ← إنترلاكن ليومي ١٣ و١٩</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>الحرارة معدلات أغسطس التاريخية — راجعي التوقعات قبل السفر بأيام · الصور من ويكيميديا كومنز</footer>
+</div>
+</body>
+</html>
